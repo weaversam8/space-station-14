@@ -2,10 +2,8 @@ syntax = "proto3";
 
 message Game {
     repeated Item items = 1;
-
-    message Item {
-        string name = 1;
-    }
 }
 
-
+message Item {
+    string name = 1;
+}
