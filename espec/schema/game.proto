@@ -2,8 +2,13 @@ syntax = "proto3";
 
 message Game {
     repeated Item items = 1;
+    repeated Tile tiles = 2;
 }
 
 message Item {
+    string Name = 1;
+}
+
+message Tile {
     string Name = 1;
 }

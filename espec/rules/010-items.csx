@@ -1,3 +1,3 @@
 var item = new Item { Name = "Item Name" };
 
-game.Items.Add(item)
+game.Items.Add(item);
