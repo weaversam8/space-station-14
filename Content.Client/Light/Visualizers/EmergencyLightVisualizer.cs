@@ -21,6 +21,7 @@ namespace Content.Client.Light.Visualizers
                 on = false;
 
             sprite.LayerSetState(0, on ? "emergency_light_on" : "emergency_light_off");
+            sprite.LayerSetShader(0, on ? "unshaded" : "shaded");
         }
     }
 }
