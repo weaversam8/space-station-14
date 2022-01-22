@@ -21,6 +21,17 @@
             - can-o1
             - can-o2
             - can-o3
+          pressureStateColors:
+            - "#FF1200"
+            - "#FF1200"
+            - "#FAFB0C"
+            - "#00FB25"
+    - type: PointLight
+      netsync: false
+      radius: 1.1
+      energy: 1.0
+      color: "#FF1200"
+      castShadows: false
     - type: UserInterface
       interfaces:
         - key: enum.GasCanisterUiKey.Key

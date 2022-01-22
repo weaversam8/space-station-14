@@ -4,6 +4,7 @@ using Robust.Client.GameObjects;
 using Robust.Shared.GameObjects;
 using Robust.Shared.IoC;
 using Robust.Shared.Serialization.Manager.Attributes;
+using Robust.Shared.Maths;
 
 namespace Content.Client.Atmos.Visualizers
 {
@@ -11,7 +12,10 @@ namespace Content.Client.Atmos.Visualizers
     public class GasCanisterVisualizer : AppearanceVisualizer
     {
         [DataField("pressureStates")]
-        private readonly string[] _statePressure = {"", "", "", ""};
+        private readonly string[] _statePressure = { "", "", "", "" };
+
+        [DataField("pressureStateColors")]
+        private readonly string[] _stateColors = { "", "", "", "" };
 
         [DataField("insertedTankState")]
         private readonly string _insertedTankState = string.Empty;
@@ -41,9 +45,14 @@ namespace Content.Client.Atmos.Visualizers
             // Update the canister lights
             if (component.TryGetData(GasCanisterVisuals.PressureState, out int pressureState))
                 if ((pressureState >= 0) && (pressureState < _statePressure.Length))
+                {
                     sprite.LayerSetState(Layers.PressureLight, _statePressure[pressureState]);
 
-            if(component.TryGetData(GasCanisterVisuals.TankInserted, out bool inserted))
+                    if (entities.TryGetComponent(component.Owner, out SharedPointLightComponent? light))
+                        light.Color = Color.FromHex(_stateColors[pressureState]);
+                }
+
+            if (component.TryGetData(GasCanisterVisuals.TankInserted, out bool inserted))
                 sprite.LayerSetVisible(Layers.TankInserted, inserted);
         }
 
